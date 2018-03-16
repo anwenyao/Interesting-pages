@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人颜色拾取</title>
+	<style type="text/css">
+	div{
+		height:80px;
+		width: 80px;
+		line-height: 80px;
+		float: left;
+		margin: 10px;
+		cursor: pointer;
+		}
+	#inputText{
+		opacity: 0;
+	}
+		</style>
+</head>
+<body>
+	<div style="background:#ccc;" class = "color">#ccc</div>
+	<div style="background:#eee;" class = "color">#eee</div>
+	<div style="background:#2e6da4;" class = "color">#2e6da4</div>
+	<div style="background:#337ab7;" class = "color">#337ab7</div>
+	<div style="background:#666;" class = "color">#666</div>
+	<div style="background:#4285f4;" class = "color">#4285f4</div>
+	
+
+	<input type="text" id="inputText" value="color"/>
+	
+
+
+
+	<script type="text/javascript">
+		var colors = document.getElementsByClassName("color");
+		var inputText = document.getElementById('inputText');
+
+			for(var i = 0;i < colors.length;++i){
+			colors[i].onclick = function(){
+				inputText.value = this.innerHTML;
+		        var currentFocus = document.activeElement;
+		        inputText.focus();
+		        inputText.setSelectionRange(0, inputText.value.length);
+		        var msg = document.execCommand('copy', true)? 'Copied Successfully':'Copy failed';
+		        currentFocus.focus();  
+		        alert(msg);//觉得没必要可以注释
+			}	
+		}	
+
+	</script>
+</body>
+</html>

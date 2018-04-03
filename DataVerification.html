@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>201531060222-安文瑶</title>
+	<style type="text/css">
+		body{
+			vertical-align: middle;
+			text-align: center;
+			padding: 0;
+			margin: 0;
+			background: #337ab7;
+		}
+		ul{
+			background: white;
+			display: inline-block;
+			margin-top: 5%;
+			border:1px solid #ccc;
+			border-radius: 5px;
+			text-align: left;
+			padding: 50px 40px;
+		}
+		ul li{
+		/*	height: 40px;*/
+			line-height: 40px;
+			list-style: none;
+		}
+		ul li label{
+			display: inline-block;
+			width: 4em;
+			text-align: right;
+		}
+		ul li select{
+			border: 1px solid #ccc;
+			width: 80px;
+			height: 30px;
+			line-height: 30px;
+			border-radius: 5px;
+		}
+		input{
+			height: 30px;
+			line-height: 30px;
+			border-radius: 5px;
+			width: 350px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			padding-left: 5px;
+			/*margin-bottom: 20px;*/
+			margin-top: 20px;
+		}
+		.input{
+			width: 250px;
+		}
+		.tip{
+			top: 0；
+			height: 30px;
+			font-size: 0.8em;
+			color: #666;
+			line-height: 15px;
+			margin-left:5.5em;
+/*			display: none;*/
+		}
+		.i_warning{
+			color: white;
+			display: inline-block;
+			background: orange;
+			height: 16px;
+			width: 16px;
+			font-size: 14px;
+			text-align: center;
+			font-weight: bolder;
+			border-radius: 50%;
+			margin-right: 5px;
+			font-style: normal;
+		}
+		.ok{
+			color: white;
+			display: inline-block;
+			background: green;
+			height: 16px;
+			width: 16px;
+			/*line-height: 16px;*/
+			font-size: 10px;
+			text-align: center;
+			/*font-weight: bolder;*/
+			border-radius: 50%;
+			margin-right: 5px;
+			font-style: normal;
+		}
+		.cr{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<label>用户名</label>
+			<input type="text" class="text" name="" placeholder="">
+			<div class="tip">
+				<!-- 长度大于10个字符 -->
+				<!-- <i class="i_warning">!</i><span class="cr">不能为空</span> -->
+			</div>
+		</li>
+		<li>
+			<label>邮件地址</label>
+			<input  class="input text" type="text" name="" placeholder="">@
+			<select>
+				<option>163.com</option>
+				<option>qq.com</option>
+				<option>139.com</option>
+			</select>
+		<div class="tip">
+		<!-- 	<i class="i_warning">!</i><span class="cr">不能为空</span> -->
+			<!-- <span>6~18个字符，可使用字母、数字、下划线，需要以字母开头</span> -->
+		</div>
+		</li>
+
+		<li>
+			<label>密码</label>
+			<input type="password" class="text" name="" placeholder="">
+			<div class="tip">
+			<!-- <i class="i_warning">!</i><span class="cr">不能为空</span>	 -->
+			<!-- 6~18个字符，可使用字母、数字、下划线，需要以字母开头 -->
+			</div>
+		</li>
+		<li>
+			<label>确认密码</label>
+			<input type="password" class="text" name="" placeholder="">
+			<div class="tip">
+				<!-- <i class="i_warning">!</i><span class="cr">不能为空</span> -->
+			</div>
+		</li>
+		<li>
+			<label>手机号码</label>
+			<input type="text" class="text" name="" placeholder="">
+			<div class="tip">
+				<!-- <i class="ok">✔</i><span>OK</span> -->
+			</div>
+		</li>
+	</ul>
+
+<script type="text/javascript">
+	window.onload = function(){
+		var inputs = document.getElementsByClassName('text');
+		var tips = document.getElementsByClassName('tip');
+		var user = inputs[0];
+		var email = inputs[1];
+		var psw = inputs[2];
+		var sure_psw = inputs[3];
+		var pnumber = inputs[4];
+		var emalReg01 = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+		var emalReg02 = /\W/;
+		 var myPnReg = /^[1][34578][0-9]{9}$/;
+
+		//用户名验证
+		//1.focus时提醒长度大于十个字符2.blur时是否为空3.blur时是否>10个字符
+		user.addEventListener('focus',function(){
+			// ifHide(tips[0],true);
+			tips[0].innerHTML = "长度大于10个字符";
+
+		});
+		user.addEventListener('blur',function(){
+			if(!user.value){
+				tips[0].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能为空</span>	";
+			}else if(user.value.length < 10){
+				tips[0].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">长度不能小于10</span>";
+			}else{
+				tips[0].innerHTML = "<i class=\"ok\">✔</i><span>OK</span>";
+			}
+
+		});
+		//end*************************************
+
+		//邮件验证
+		//1.focus时提醒规范2.blur时是否为空3.blur时是否符合正则表达式
+		email.addEventListener('focus',function(){
+			tips[1].innerHTML = "<span>6~18个字符，可使用字母、数字、下划线，需要以字母开头</span>";
+		});
+		email.addEventListener('blur',function(){
+			if(!email.value){
+				tips[1].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能为空</span>	";
+			}else if(email.value.length<6){
+				tips[1].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">长度不能小于6个字符</span>	";
+			}else if(email.value.length>18){
+				tips[1].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">长度不能大于18个字符</span>	";
+			}else if(emalReg02.test(email.value)){
+				tips[1].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">含有非法符号</span>	";
+			}else if(!emalReg01.test(email.value)){
+				tips[1].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">需要以字母开头</span>	";
+			}else{
+				tips[1].innerHTML = "<i class=\"ok\">✔</i><span>OK</span>";
+			}
+		});
+		//end*************************************
+
+
+		//密码输入框1.blur不能为空2.blur不能和用户名相同 index 2
+		psw.addEventListener('focus',function(){
+			tips[2].innerHTML = "<span>6~18个字符</span>";
+		});
+		psw.addEventListener('blur',function(){
+			if(!psw.value){
+				tips[2].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能为空</span>	";
+			}else if( user.value==psw.value && user.value&&psw.value){
+					tips[2].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能和用户名相同</span>	";
+			}else{
+				tips[2].innerHTML = "<i class=\"ok\">✔</i><span>OK</span>";
+			}
+		});
+		//end*************************************
+
+		
+		//确认密码 1.blur时验证与密码相同 index->3
+		sure_psw.addEventListener('focus',function(){
+			tips[3].innerHTML = "<span>与密码填写一致</span>";
+		});
+		sure_psw.addEventListener('blur',function(){
+			if(!sure_psw.value){
+				tips[3].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能为空</span>	";
+			}else if( sure_psw.value!=psw.value){
+					tips[3].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">两次密码填写不一致</span>	";
+			}else{
+				tips[3].innerHTML = "<i class=\"ok\">✔</i><span>OK</span>";
+			}
+		});
+		//end*************************************
+
+
+		//手机号码 1.blur 不能为空
+		pnumber.addEventListener('focus',function(){
+			tips[4].innerHTML = "<span>填写是11位手机号码</span>";
+		});
+		pnumber.addEventListener('blur',function(){
+			if(!pnumber.value){
+				tips[4].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">不能为空</span>	";
+			}else if( !myPnReg.test(pnumber.value)){
+					tips[4].innerHTML = "<i class=\"i_warning\">!</i><span class=\"cr\">请填写正确的手机号</span>	";
+			}else{
+				tips[4].innerHTML = "<i class=\"ok\">✔</i><span>OK</span>";
+			}
+		});
+		//end*************************************
+
+	}
+	
+	function ifHide(node,bool){
+		if(bool){
+			node.style.display="block";
+		}else{
+			node.style.display="none";
+		}
+	}
+
+	function warningRed(node){
+		node.style.background = "rgba(255,0,0,0.2)";
+		node.style.borderColor = "red";
+	}
+</script>
+</body>
+</html>

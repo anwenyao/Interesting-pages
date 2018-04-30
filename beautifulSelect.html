@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select</title>
+	<style type="text/css">
+		ul,li{
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.select{
+			display: inline-block;
+			position: relative;
+			border:1px solid blue;
+			cursor: pointer;
+			
+		}
+		.select .options .option,.select .selected{
+			padding-left: 5px;
+		}
+		.select .options{
+			position:relative;
+			left: -1px;
+			width: 100%;
+			border: 1px solid;
+			display: none;
+			cursor: default;
+		}
+		.select .options .option:hover{
+			background: #eee;
+		}
+		.select  .arrow{
+			display: block;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			position: absolute;
+			top: 40%;
+			right: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="select">
+		<span class="selected">请选择</span>
+		<ul class="options">
+			<li class="option">苹果</li>
+			<li class="option">草莓</li>
+			<li class="option">香蕉</li>
+			<li class="option">甘蔗</li>
+			<li class="option">车厘子</li>
+		</ul>
+		<span class="arrow"></span>
+	</div>
+
+	<script type="text/javascript">
+		window.onload =function(){
+			 annSelect(300,60,'pink','green');
+		};
+		//###存在问题####
+		/*
+		1.无法在同一个页面设置n个不同样式的select
+		2.没有处理字体大小和select的比例关系
+		3.没有验证在低版本浏览器的兼容性
+		4.条件运算符情况太多 导致代码可读性很差 可以在一开始就处理
+		5.可以考虑是否采用动态增加下拉框中的选项
+		*/
+		function annSelect(select_width,select_height,border_color,font_color){
+			var select = document.getElementsByClassName('select')[0];
+			var options = document.getElementsByClassName('options')[0];
+			var arrow = document.getElementsByClassName('arrow')[0];
+			var option = document.getElementsByClassName('option');
+			//设置select的宽高
+			select.style.width = select_width?select_width+'px':100+'px';
+			select.style.height = select.style.lineHeight = select_height?select_height+'px':30+'px';
+			//设置select和下拉菜单的字体颜色
+			select.style.color = font_color?font_color:(border_color?border_color:'#666');
+			//设置select和下拉菜单的边框颜色
+			select.style.borderColor = border_color?border_color:'#666';
+			options.style.borderColor = "transparent "+(border_color?border_color:"#666")+" "+(border_color?border_color:"#666")+" "+(border_color?border_color:"#666");
+			//根据select的宽度制箭头的大小和颜色
+			arrow.style.borderWidth = (select_height?select_height:30) * 1/6 + 'px';
+			arrow.style.borderColor = (border_color?border_color:"#666") + " transparent transparent transparent";
+			//点击select出现下拉菜单
+			select.onclick = function(e){
+				//阻止事件冒泡 以防点击自己的时候关闭下拉菜单
+				e.stopPropagation();
+				if (options.style.display == 'block') {
+					options.style.display = 'none';
+				}else{
+					options.style.display = 'block';
+				}
+			}
+			//点击别处关闭下拉菜单
+			select.parentNode.onclick = function(){
+				options.style.display = 'none';
+			}
+			//显示下拉菜单所选项
+			for(var i = 0;i < option.length;++i){
+				option[i].onclick = function(){
+					this.parentNode.parentNode.getElementsByClassName('selected')[0].innerHTML = this.innerHTML;
+				}
+			}
+		}
+		
+	</script>
+</body>
+</html>

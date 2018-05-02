@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding: 0;
+	}
+	body{
+		padding-top: 20px;
+	}
+	.container{
+		
+		position: relative;
+		width: 1160px;
+		margin:0 auto;
+	}
+	.box{
+		padding: 10px;
+		background: #fff;
+		box-shadow: 0 0 5px #ccc;
+		position: absolute;
+	}
+	.box img{
+		width: 200px;
+		height: auto;
+		vertical-align: middle;
+	}
+	.test{
+		width: 1px;
+		height: 200px;
+		padding: 2px;
+		margin: 10px;
+	}
+	p{
+		text-align: center;
+		clear: both;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+	</div>
+
+
+	
+	<script type="text/javascript">
+
+		//###存在问题####//
+		/*
+		1.还没有将函数封装起来
+		2.是否还可优化
+		3.兼容性的测试
+		4.是否可以动态计算每列的个数
+		5.增加onscroll动态添加
+		*/
+
+
+		//###兼容性###//
+		/*
+		测试过的浏览器（可兼容的浏览器）
+		1.chrome  66.0.3359.139（正式版本）
+		2.firefox 59.0.2 (64 位)
+		3.IE 11（不禁用js的情况下）
+		(持续更新中)
+		*/
+		window.onload = function(){
+			'use strict'
+			var container = document.getElementsByClassName('container')[0];
+			var left = 0;
+			var top = 0;
+			var heights = [];
+			var pic_length = 21;
+			//动态加载box
+			for(var i = 0;i < pic_length;++i){
+				var box = document.createElement('div');
+				var img = document.createElement('img');
+				box.className = 'box';
+				img.setAttribute('src',"images/"+i+".jpg");
+				container.appendChild(box);
+				box.innerHTML = '<img src="images/'+i+'.jpg">';
+				box.style.left = (i % 5) * 235 +'px';
+				
+			}// end of for
+
+			//图片加载完后设置定位
+			img.onload = function(){
+				setPosition();
+			}
+			
+
+			function setPosition(){
+				var boxes = document.getElementsByClassName('box'); 
+				var min = 0;//记录数组的最小值
+				var index = 0;//记录数组的最小值的坐标
+				for(var i = 0;i < pic_length;++i){
+					
+					if(i < 5){
+						heights.push(boxes[i].clientHeight);
+
+					}else{
+						min = Math.min.apply(heights,heights);
+						console.log(min);
+						index = heights.indexOf(min);
+						console.log(index);
+						boxes[i].style.top =  min + 15 + 'px';
+						boxes[i].style.left =  index * 235 + 'px';
+						heights[index] += boxes[i].clientHeight + 15;
+					}
+					console.log(heights);
+				}
+			}//end of setPosition
+
+		};
+	</script>
+</body>
+</html>

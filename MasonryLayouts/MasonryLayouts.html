@@ -12,9 +12,7 @@
 		padding-top: 20px;
 	}
 	.container{
-		
 		position: relative;
-		width: 1160px;
 		margin:0 auto;
 	}
 	.box{
@@ -27,16 +25,6 @@
 		width: 200px;
 		height: auto;
 		vertical-align: middle;
-	}
-	.test{
-		width: 1px;
-		height: 200px;
-		padding: 2px;
-		margin: 10px;
-	}
-	p{
-		text-align: center;
-		clear: both;
 	}
 	</style>
 </head>
@@ -55,6 +43,7 @@
 		3.兼容性的测试
 		4.是否可以动态计算每列的个数
 		5.增加onscroll动态添加
+		6.将固定值(比如box的大小,边距)换成参数，增加灵活性(解决)
 		*/
 
 
@@ -68,11 +57,20 @@
 		*/
 		window.onload = function(){
 			'use strict'
+			console.log(document.body.clientWidth);
+
 			var container = document.getElementsByClassName('container')[0];
+			var body_width = document.body.clientWidth;
 			var left = 0;
 			var top = 0;
 			var heights = [];
+			var box_width = 220;//图片的大小
+			var box_marigin = 15;//box的右边距和下边距
+			var sum_width = box_width + box_marigin;//总大小
 			var pic_length = 21;
+			var col = Math.floor(body_width/sum_width);//图片的列数
+			//设置容器的宽
+			container.style.width = col*sum_width +'px';
 			//动态加载box
 			for(var i = 0;i < pic_length;++i){
 				var box = document.createElement('div');
@@ -81,7 +79,7 @@
 				img.setAttribute('src',"images/"+i+".jpg");
 				container.appendChild(box);
 				box.innerHTML = '<img src="images/'+i+'.jpg">';
-				box.style.left = (i % 5) * 235 +'px';
+				box.style.left = (i % col) * sum_width +'px';
 				
 			}// end of for
 
@@ -97,19 +95,17 @@
 				var index = 0;//记录数组的最小值的坐标
 				for(var i = 0;i < pic_length;++i){
 					
-					if(i < 5){
+					if(i < col){
 						heights.push(boxes[i].clientHeight);
 
 					}else{
 						min = Math.min.apply(heights,heights);
-						console.log(min);
 						index = heights.indexOf(min);
-						console.log(index);
-						boxes[i].style.top =  min + 15 + 'px';
-						boxes[i].style.left =  index * 235 + 'px';
-						heights[index] += boxes[i].clientHeight + 15;
+						boxes[i].style.top =  min + box_marigin + 'px';
+						boxes[i].style.left =  index * sum_width + 'px';
+						heights[index] += boxes[i].clientHeight + box_marigin;
 					}
-					console.log(heights);
+					//console.log(heights);
 				}
 			}//end of setPosition
 

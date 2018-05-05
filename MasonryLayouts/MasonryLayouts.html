@@ -8,7 +8,13 @@
 		margin:0;
 		padding: 0;
 	}
+	html{
+		width: 100%;
+		height:100%;
+	}
 	body{
+		width: 100%;
+		height:100%;
 		padding-top: 20px;
 		background: #eee;
 	}
@@ -45,6 +51,8 @@
 		5.增加onscroll动态添加
 		6.将固定值(比如box的大小,边距)换成参数，增加灵活性(解决)
 		7.动态设置图片大小和边距(解决)
+		8.监控图片加载情况
+		9.在IE下的兼容问题
 		*/
 
 
@@ -59,58 +67,71 @@
 		window.onload = function(){
 			'use strict'
 			var container = document.getElementsByClassName('container')[0];
+
 			masonryLayouts(container,220,15,10);
 
+			
 			function masonryLayouts(container,box_width,box_marigin,box_padding){
 				var body_width = document.body.clientWidth;
+				//要把html 和body 的宽高设置为100%
+				var body_height = document.body.clientHeight || document.documentElement.clientHeight;
 				var left = 0;
 				var top = 0;
 				var heights = [];			
 				var sum_width = box_width + box_marigin;//总大小
 				var pic_length = 21;
 				var col = Math.floor(body_width/sum_width);//图片的列数
+				var start = 0;//记录下一次加载时 box的开始位置
+				var min = 0;//记录数组的最小值
+				var index = 0;//记录数组的最小值的坐标
 				box_padding = box_padding?box_padding:10;
 				//设置容器的宽
 				container.style.width = col*sum_width +'px';
 				//动态加载box
-				for(var i = 0;i < pic_length;++i){
-					var box = document.createElement('div');
-					var img = document.createElement('img');
-					box.className = 'box';
-					box.style.padding = box_padding + 'px';
-					img.setAttribute('src',"images/"+i+".jpg");
-					container.appendChild(box);
-					box.innerHTML = '<img src="images/'+i+'.jpg">';
-					box.style.left = (i % col) * sum_width +'px';
-					
-				}// end of for
-	
-				//图片加载完后设置定位
-				img.onload = function(){
-					setPosition();
+				eleLoad();
+				//滑动滚轮实现动态加载
+				document.body.onscroll = function(){
+					if(document.documentElement.scrollTop + body_height> Math.min.apply(heights,heights)){
+						eleLoad();
+					}
 				}
 				
-	
-				function setPosition(){
-					var boxes = document.getElementsByClassName('box'); 
-					var min = 0;//记录数组的最小值
-					var index = 0;//记录数组的最小值的坐标
+				
+				function eleLoad(){
 					for(var i = 0;i < pic_length;++i){
+						var box = document.createElement('div');
+						var img = document.createElement('img');
+						box.className = 'box';
+						box.style.padding = box_padding + 'px';
+						img.setAttribute('src',"images/"+i+".jpg");
+						container.appendChild(box);
+						box.innerHTML = '<img src="images/'+i+'.jpg">';
+					}// end of for
+					//图片加载完后设置定位
+					img.onload = function(){
+						setPosition();
+					}
+				}
+				function setPosition(){
+					console.log('start'+start);
+					var boxes = document.getElementsByClassName('box'); 
+					for(var i = start;i < boxes.length;++i){
 						var img = boxes[i].getElementsByTagName('img')[0]; 
-						console.log(img);
 						img.width = box_width - 2 * box_padding;
+						boxes[i].id = i;
 						if(i < col){
 							heights.push(boxes[i].clientHeight);
+							boxes[i].style.left = (i % col) * sum_width +'px';
 	
 						}else{
-							min = Math.min.apply(heights,heights);
+							min = Math.min.apply(null,heights);
 							index = heights.indexOf(min);
 							boxes[i].style.top =  min + box_marigin + 'px';
 							boxes[i].style.left =  index * sum_width + 'px';
 							heights[index] += boxes[i].clientHeight + box_marigin;
 						}
-						//console.log(heights);
 					}//end of for
+					start += pic_length;
 				}//end of setPosition
 			}//end of masonryLayouts
 		};

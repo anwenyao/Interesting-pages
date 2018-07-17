@@ -41,7 +41,6 @@
 
 	
 	<script type="text/javascript">
-
 		//###存在问题####//
 		/*
 		1.还没有将函数封装起来(解决)
@@ -54,8 +53,6 @@
 		8.监控图片加载情况
 		9.在IE下的兼容问题
 		*/
-
-
 		//###兼容性###//
 		/*
 		测试过的浏览器（可兼容的浏览器）
@@ -67,9 +64,7 @@
 		window.onload = function(){
 			'use strict'
 			var container = document.getElementsByClassName('container')[0];
-
 			masonryLayouts(container,220,15,10);
-
 			
 			function masonryLayouts(container,box_width,box_marigin,box_padding){
 				var body_width = document.body.clientWidth;

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			position: relative;
+			margin:50px auto;
+			width: 720px;
+			height:480px;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.container img{
+			width: 100%;
+			position: absolute;
+			opacity: 0;
+			transition: opacity 1s ease;/*opacity变化时有个过渡效果*/
+		}
+		.container > div{
+			opacity:0.6;
+		}
+		.container .left,.container .right{
+			position:absolute;
+			height: 60px;
+			line-height: 54px;
+			width: 80px;
+			text-align:center;
+			font-size: 40px;
+			color: white;
+			font-weight: bold;
+			background: black;
+		}
+		.container .left{
+			left: 0;
+			top: 50%;
+			margin-top: -30px;
+		}
+		.container .right{
+			right: 0;
+			top: 50%;
+			margin-top: -30px;
+		}
+		.container .dots{
+			position: absolute;
+			width: 200px;
+			bottom: 10px;
+			left: 50%;
+			margin-left: -100px;
+		}
+		.container .dots .dot{
+			float: left;
+			width: 20px;
+			height:20px;
+			margin: 0 10px;
+			background: black;
+			border-radius: 50%;
+		}
+		.container .dots .current{
+			background: grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- <div> -->
+			<img src="img/gz01.jpg" style="opacity: 1;">
+			<img src="img/gz02.jpg">
+			<img src="img/gz03.jpg">
+			<img src="img/gz04.jpg">
+			<img src="img/gz05.jpg">
+		<!-- </div> -->
+
+		
+
+		<div class="left"><</div>
+		<div class="right">></div>
+		<div class="dots">
+			<div class="dot current"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript" src="js/eventUtil.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var container = document.getElementsByClassName('container')[0];
+			var dots = document.getElementsByClassName('dot');
+			var left = document.getElementsByClassName('left')[0];
+			var right = document.getElementsByClassName('right')[0];
+			lb(container,dots,right,left);
+			//console.log(EventUtil);
+
+
+			function lb(node,dot,nextNode,preNode){//图片的父盒子 控制切换页面的小圆点 控制下一张的元素 控制上一张的元素
+				var imgs = node.getElementsByTagName('img');//获得图片
+				var len = imgs.length;//图片的张数
+				var pre = 0,next = 1;//记录当前即将消失的元素和下一个出现的元素
+				var timer;//定时器
+				var i = 0;
+
+				function move(){//实现上一张图片消失，下一张图片出现
+					imgs[pre].style.opacity = '0';//上一张消失
+					imgs[next].style.opacity = '1';//下一张出现
+					dot[pre].className = dot[pre].className.replace(' current','');
+					dot[next].className += ' current';
+					pre = next;
+					next++;
+					//console.log(next);
+					if(next > len - 1){//判断是否是最后一张
+						next = 0;
+					}//end of if
+				}//end of move
+
+				timer = setInterval(move,2000);
+
+				//将鼠标移上图片 清除定时器
+				for(i = 0;i < len;++i){
+					EventUtil.addHandler(imgs[i],'mouseover',function(){
+						clearInterval(timer);
+					});
+					//鼠标移开继续执行
+					EventUtil.addHandler(imgs[i],'mouseout',function(){
+						timer = setInterval(move,2000);
+					});
+				}
+				
+				
+				//给dot加上index属性
+				for(var i = 0;i < dot.length;++i){
+					dot[i].index = i;
+					//鼠标移到小圆点显示对应的图片
+					EventUtil.addHandler(dot[i],'mouseover',function(){
+						clearInterval(timer);
+						next = this.index;
+						// console.log(next);
+						move();
+						timer = setInterval(move,3000);
+					});
+				}
+
+				//实现翻页 上一张 下一张效果
+				EventUtil.addHandler(nextNode,'click',function(){//下一页
+					clearInterval(timer);
+					move();
+					timer = setInterval(move,3000);
+				});
+				EventUtil.addHandler(preNode,'click',function(){//上一页
+					next = pre - 1;//刚开始写成了next--，next--的话只会维持当前的图片一直不向后 而不会切换到上一张图片
+					clearInterval(timer);
+					if(next < 0){
+						next = 4;
+					}
+					move();
+					console.log(next);
+					timer = setInterval(move,2000);
+				});
+
+				
+			}//end of lb
+
+		}//end of windowonlod
+		
+
+	</script>
+</body>
+</html>

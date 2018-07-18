@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			position: relative;
+			margin:50px auto;
+			width: 720px;
+			height:480px;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.container img{
+			width: 100%;
+			position: absolute;
+			display: none;
+		}
+		.container > div{
+			opacity:0.6;
+		}
+		.container .left,.container .right{
+			position:absolute;
+			height: 60px;
+			line-height: 54px;
+			width: 80px;
+			text-align:center;
+			font-size: 40px;
+			color: white;
+			font-weight: bold;
+			background: black;
+		}
+		.container .left{
+			left: 0;
+			top: 50%;
+			margin-top: -30px;
+		}
+		.container .right{
+			right: 0;
+			top: 50%;
+			margin-top: -30px;
+		}
+		.container .dots{
+			position: absolute;
+			width: 175px;
+			bottom: 10px;
+			left: 50%;
+			margin-left: -87.5px;
+		}
+		.container .dots .dot{
+			float: left;
+			width: 15px;
+			height:15px;
+			margin: 0 10px;
+			background: black;
+			border-radius: 50%;
+		}
+		.container .dots .current{
+			background: grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img src="img/gz01.jpg" style="display:block">
+		<img src="img/gz02.jpg">
+		<img src="img/gz03.jpg">
+		<img src="img/gz04.jpg">
+		<img src="img/gz05.jpg">
+
+		<div class="left"><</div>
+		<div class="right">></div>
+		<div class="dots">
+			<div class="dot current"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var $pre = 0;
+			var $current = 1;
+			var $len = $('.container img').length;//获得图片的长度
+			var $speed = 3000;//图片切换速度
+			console.log($len);
+
+			function move(){
+				//圆点显示当前图片效果
+				$('.container .dot').eq($pre).removeClass('current');
+				$('.container .dot').eq($current).addClass('current');
+				$('.container img').eq($pre).fadeOut(600);//前面一张淡出
+				$('.container img').eq($current).fadeIn(600);//当前的图片淡入
+				$pre = $current;
+				$current ++;
+				if($current > $len - 1){//判断是否越界
+					$current = 0;
+				}
+			}
+
+			var $timer = setInterval(move,$speed);//每两秒更换一次图片
+
+			//当鼠标移到盒子上 清除定时器
+			$('.container').on('mouseenter',function(){
+				clearInterval($timer);
+			});
+			//鼠标移开 轮播继续
+			$('.container').on('mouseleave',function(){
+				$timer = setInterval(move,$speed);
+			});
+
+			//点击切换图片
+			$('.container .left').on('click',function(){
+				$current = $pre - 1;
+				if($current < 0){
+					$current = $len - 1;
+				}
+				move();
+			});
+			//下一张
+			$('.container .right').on('click',function(){
+				move();
+			});
+
+			//小圆点显示图片效果
+			$('.container .dot').on('mouseenter',function(){
+				var $index = $(this).index();//获取当前dot的下标
+				$current = $index;
+				move();
+			});
+
+
+		});
+	</script>
+</body>
+</html>

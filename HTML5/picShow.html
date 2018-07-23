@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 800px;
+			height: 480px;
+			overflow: hidden;
+			margin: 50px auto;
+			cursor: pointer;
+		}
+		.container ul li{
+			list-style: none;
+			float: left;
+			width: 160px;
+			height: 480px;
+			overflow: hidden;
+			transition: width 1s ease 0.1s;/*过渡效果*/
+		}
+		.container ul:hover li{
+			width: 20px;
+		}
+		.container ul li:hover{
+			width: 720px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul>
+			<li><img src="img/pic01.png"></li>
+			<li><img src="img/pic02.png"></li>
+			<li><img src="img/pic03.png"></li>
+			<li><img src="img/pic04.png"></li>
+			<li><img src="img/pic05.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

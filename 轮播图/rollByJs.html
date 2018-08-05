@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动轮播</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		.container{
+			width: 690px;
+			height: 460px;
+			overflow: hidden;
+			margin: 100px auto;
+			position: relative;
+
+		}
+		.container .imgBox{
+			position: absolute;
+			width: 5520px;
+			height:460px;
+		}
+		.container .imgBox li{
+			float: left;
+		}
+		.arrow{
+			opacity: 0;
+			position: absolute;
+			bottom: 0;
+			top: 0;
+			margin: auto 0;
+			width: 90px;
+			height: 60px;
+			line-height: 60px;
+			background: #000;
+			color: white;
+			font-size: 45px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.container:hover .arrow{
+			opacity: 0.5;
+		}
+		#left{
+			left:10px;
+		}
+		#right{
+			right:10px;
+		}
+		.container .dots{
+			position: absolute;
+			right: 0;
+			left: 0;
+			bottom: 20px;
+			margin: auto 0;
+			text-align: center;
+		}
+		.container .dots .dot{
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			margin: 0 8px;
+			border-radius: 50%;
+			cursor: pointer;
+			background: rgba(0,0,0,0.7);
+		}
+		.container .dots .red{
+			background: orange;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="imgBox" style="left:-690px;">
+			<li class="img"><img src="img/z06.jpg" alt=""></li>
+			<li class="img"><img src="img/z01.jpg" alt=""></li>
+			<li class="img"><img src="img/z02.jpg" alt=""></li>
+			<li class="img"><img src="img/z03.jpg" alt=""></li>
+			<li class="img"><img src="img/z04.jpg" alt=""></li>
+			<li class="img"><img src="img/z05.jpg" alt=""></li>
+			<li class="img"><img src="img/z06.jpg" alt=""></li>
+			<li class="img"><img src="img/z01.jpg" alt=""></li>	
+		</ul>	
+		<div id="left" class="arrow">&lt</div>
+		<div id="right" class="arrow">&gt</div>
+		<div class="dots">
+			<span class="dot red"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript" src="js/eventUtil.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var container = document.getElementsByClassName("container")[0];
+			
+
+			roll(container,690);
+
+			function roll(container,imgWidth){
+				var imgBox = container.getElementsByClassName("imgBox")[0];
+				var imgs = imgBox.getElementsByClassName("img");
+				var left = document.getElementById("left");
+				var right = document.getElementById("right");
+				var dots = container.getElementsByClassName("dot");
+				var len = imgs.length;//图片的张数
+				var dis = parseInt(imgBox.style.left);//图片的定位
+				var time = 3000;//自动切换图片的时间
+				var timer = null;
+				console.log(dots);
+				console.log(dots[1].className);
+				
+				//点亮小圆点
+				function delight(current,pre){
+					dots[pre].className = 
+						dots[pre].className.replace(" red","");
+					dots[current].className += " red";
+				}
+
+				function move(offset){
+					var innerTimer = null;
+					var innerTime = 500;//多少秒更换一张图片
+					var step = 69;//经过多少次偏移完成一张图片的切换
+					var count = 0;
+					var current = 0;
+					var pre = 0
+
+					//点亮当前小圆点
+					current = Math.abs(parseInt(imgBox.style.left)/imgWidth);
+					if(current == dots.length){
+						current = 0;
+						pre = 5;
+					} else{
+						pre = current - 1;
+					}
+					delight(current,pre);
+
+
+					function animate(){
+						//parseInt会对imgBox.style.left小数部分处理
+						imgBox.style.left = parseInt(imgBox.style.left) + 
+												offset/step + "px";
+						//最后一张转换到倒数第二张
+						if(parseInt(imgBox.style.left) == -(7 * imgWidth)){
+							imgBox.style.left = -imgWidth + "px";
+						}else if(parseInt(imgBox.style.left) == 0){
+							//第一张转换到倒数第一张
+							imgBox.style.left = -6 * imgWidth + "px";
+						}
+
+						innerTimer = setTimeout(animate,innerTime/step);
+
+						if(count ++ == step-1){
+							clearTimeout(innerTimer);
+							count = 0;
+							
+						}
+					}//end of animate
+
+					animate(offset);
+
+
+					
+				}//end of move
+
+
+				//定时播放效果
+				//若不考虑bind兼容问题 可使用move.bind(null,offset)
+				function bound(offset){
+					return function(){
+						move(offset)
+					};
+				}
+				timer = setInterval(bound(-imgWidth),time);
+
+
+				//事件效果处理
+				EventUtil.addHandler(right,"click",function(){
+					move(-imgWidth);
+				});
+
+				EventUtil.addHandler(left,"click",function(){
+					move(imgWidth);
+				});
+
+				//鼠标放置容器上取消定时器
+				EventUtil.addHandler(container,"mouseover",function(){
+					clearInterval(timer);
+				});
+				EventUtil.addHandler(container,"mouseout",function(){
+					timer = setInterval(bound(-imgWidth),time);
+				});
+
+				//鼠标移上小圆点自动显示图片 
+				for(var i = 0;i < dots.length;++i){
+					dots[i].index = i + 1;
+					EventUtil.addHandler(dots[i],"mouseover",function(){
+						imgBox.style.left = -this.index * imgWidth + "px";
+						for(var j = 0;j < dots.length;++j){
+							dots[j].className = dots[j].className.replace(" red","");
+						}
+						this.className += " red";
+					});
+				}
+
+
+
+
+				
+					
+				
+
+			}
+		}
+	</script>
+</body>
+</html>

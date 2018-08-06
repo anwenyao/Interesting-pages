@@ -115,17 +115,10 @@
 				var dots = container.getElementsByClassName("dot");
 				var len = imgs.length;//图片的张数
 				var dis = parseInt(imgBox.style.left);//图片的定位
-				var time = 3000;//自动切换图片的时间
+				var time = 2000;//自动切换图片的时间
 				var timer = null;
 				console.log(dots);
 				console.log(dots[1].className);
-				
-				//点亮小圆点
-				function delight(current,pre){
-					dots[pre].className = 
-						dots[pre].className.replace(" red","");
-					dots[current].className += " red";
-				}
 
 				function move(offset){
 					var innerTimer = null;
@@ -135,15 +128,21 @@
 					var current = 0;
 					var pre = 0
 
+					console.log(parseInt(imgBox.style.left));
+					console.log("offset",offset);
 					//点亮当前小圆点
-					current = Math.abs(parseInt(imgBox.style.left)/imgWidth);
+					current = Math.abs((parseInt(imgBox.style.left) + offset)/imgWidth) - 1;
+					console.log("current",current);
 					if(current == dots.length){
 						current = 0;
-						pre = 5;
-					} else{
-						pre = current - 1;
+					}else if(current == -1){
+						current = dots.length - 1;
 					}
-					delight(current,pre);
+
+					for(var j = 0;j < dots.length;++j){
+							dots[j].className = dots[j].className.replace(" red","");
+						}
+					dots[current].className += " red";
 
 
 					function animate(){

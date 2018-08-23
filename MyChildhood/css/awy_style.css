@@ -1,0 +1,1226 @@
+
+*{
+	margin: 0;
+	padding: 0;;
+}
+body{
+	overflow: hidden;
+}
+.container{
+	position: absolute;
+}
+section{
+	position: relative;
+	overflow: hidden;
+}
+section img{
+	position: absolute;
+}
+.awy_sec3{
+	background: #73c5ff;
+}
+.awy_sec3 img:nth-child(1){
+	right: 10%;
+	top: 5%;
+	width: 25%;
+	animation:sun 3s linear infinite;
+}
+
+.awy_sec3 img:nth-child(2){
+	width: 100%;
+	animation: cloud 2s ease infinite;
+}
+.awy_sec3 img:nth-child(3){
+	width: 100%;
+	bottom: 0;
+}
+.awy_sec3 img:nth-child(4){/*风筝1*/
+	/*top:34%;
+	left: 0;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	margin: auto;*/
+	bottom: 0;
+	left:-100%;
+	width: 25%;
+	animation: fz 1s ease-in infinite;
+}
+.awy_sec3 img:nth-child(5){/*风筝2*/
+	top: 100%;
+	left:-100%;
+	animation: fz 1s ease-out infinite;
+}
+.awy_sec3 img:nth-child(6){/*风筝3*/
+	top: 100%;
+	left:-100%;
+	width: 15%;
+	animation: fz 1s ease-out infinite;
+}
+.awy_sec3 img:nth-child(7){
+	top:46% ;
+	left: 10px;
+	width: 70%;
+}
+.awy_sec3 img:nth-child(8){
+	top:60% ;
+	right: 10px;
+	width: 45%;
+}
+.font{
+	display: none;
+}
+.awy_sec4{
+	background: url(../img/awy/sky.png);
+	background-size: 100% 100%;
+}
+.awy_sec4 img:nth-child(1){
+	width: 100%;
+	animation: star 1s ease infinite;
+}
+.awy_sec4 img:nth-child(2){
+	width: 100%;
+	animation: cloud 3s linear infinite;
+}
+.awy_sec4 img:nth-child(3){
+	left: 20px;
+	top: 46%;
+	width: 40%;
+}
+.awy_sec4 img:nth-child(4){
+	right: 20px;
+	top: 60%;
+	width: 40%;
+}
+.awy_sec4 img:nth-child(5){
+	width: 100%;
+	display: none;
+}
+.awy_sec4 .font01{
+	display: none;
+}
+.arrow{
+	width: 15%;
+	position: fixed;
+	bottom: 5%;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	animation: bounce 1s ease infinite;
+}
+#music{
+	height: 150px;
+	width: 150px;
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	z-index: 100;
+	animation: music 3s linear infinite;
+}
+.jhq_12 .child{
+	width: 295px;
+	height: 400px;
+	border: 20px solid #fff;
+	border-radius: 10px;
+	box-shadow: 10px 10px 10px rgba(0,0,0,.3);
+	animation: rotate 3s ease infinite;
+}
+@keyframes music{
+	from{
+		transform: rotate(0);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+@keyframes bounce{
+	0%{
+		transform: translateY(0);	
+	}
+	50%{
+		transform: translateY(-20px);
+	}
+	100%{
+		transform: translateY(0);	
+	}
+}
+@keyframes sun{
+	0%{
+		transform: rotate(0) scale(1,1);
+	}
+	50%{
+		transform: rotate(180deg) scale(1.1,1.1);
+	}
+	100%{
+		transform: rotate(360deg) scale(1,1);
+	}
+}
+@keyframes cloud{
+	0%{
+		transform:scale(1,1);
+	}
+	50%{
+		transform:scale(1.1,1.1);
+	}
+	100%{
+		transform:scale(1,1);
+	}
+}
+@keyframes fz{
+	0%{
+		transform:translate(0,0);
+	}
+	50%{
+		transform:translate(-10px,20px);
+	}
+	100%{
+		transform:translate(0,0);
+	}
+}
+@keyframes gr{
+	0%{
+		transform:translate(0,0)
+	}
+	50%{
+		transform:translate(-10px,20px);
+	}
+	100%{
+		transform:translate(0,0);
+	}
+}
+@keyframes star{
+	0%{
+		opacity: 1;
+		/*transform: scale(1);*/
+	}
+	50%{
+		opacity: 0.6;
+/*		transform: scale(0.98);*/
+	}
+	100%{
+		opacity: 1;
+		/*transform: scale(1);*/
+	}
+}
+@keyframes clouds{
+	from{
+		transform: translateY(10px);
+	}
+	to{
+		transform: translateY(0);
+	}
+}
+/*awy end*/
+
+/*cjj*/
+.cjj-content {
+	position: absolute;
+	overflow: hidden;
+}
+
+.page{
+	position: relative;
+	overflow: hidden;
+}
+.cjj-page1{
+	background: #eee;
+}
+.cjj-page2{
+	background: eee;
+	
+}
+.cjj-page3{
+	background: #eee;
+	
+	
+}
+.cjj-page4{
+	background: #eee;
+	
+	
+}
+.cjj-page5{
+	background: #eee;
+}
+.cjj-page6{
+	background: #eee;
+	
+}
+.cjj-page7{
+	background: skyblue;
+	
+	
+}
+.cjj-page8{
+	background: #f4f0ed;	
+	/*background: black;*/
+}
+.page8-chaung{
+	width: 45%;
+    height: 20%;
+    right: 5%;
+    top: 5%;
+    display: none;
+	
+}
+.page8-zhuo{
+	width: 74%;
+    height: 34%;
+    bottom: 14%;
+    left: 11%;
+}
+.page8-feiji1{
+    width: 0%;
+    right: 22%;
+    top: 16%;
+    
+}
+ul{width: 100%;
+height: 100%;}
+.feij{
+	width: 12%;
+	display: none;
+}
+.page8-feiji2{
+	right: 34%;
+    top: 21%;
+}
+.page8-feiji3{
+	    right: 42%;
+    top: 27%;
+}
+.page8-feiji4{
+	    right: 54%;
+    top: 32%;
+}
+.page8-feiji5{
+	    right: 61%;
+    top: 43%;
+}
+.page8-feiji6{
+	    right: 51%;
+    top: 52%;
+}
+.page8-feiji7{
+	    right: 38%;
+    top: 61%;
+}
+.page8-feiji8{
+	    right: 48%;
+    top: 74%
+}
+.page8-fenglign{
+	right: 23%;
+    width: 7%;
+    top: 7%;
+    animation: rotate 2s infinite;
+    display: none;
+	
+}
+.page8-yezi{
+    right: 74%;
+    width: 37%;
+    height: 20%;
+    top: -6%;
+    transform: scaleX(-1);
+    animation: yezi 2s linear infinite;
+     
+}
+.page8-wenzi0{
+	    left: 10%;
+    top: 39%
+}
+.page8-wenzi1{
+	left: 10%;
+    top: 29%;
+}
+
+@keyframes rotate{
+	0%{transform: rotate(0deg);}
+	10%{transform: rotate(5deg);}
+	20%{transform: rotate(10deg);}
+	30%{transform: rotate(15deg);}
+	40%{transform: rotate(10deg);}
+	50%{transform: rotate(0deg);}
+	60%{transform: rotate(-5deg);}
+	70%{transform: rotate(-10deg);}
+	80%{transform: rotate(-15deg);}
+	90%{transform: rotate(-10deg);}
+	100%{transform: rotate(0deg);}
+}
+.page8-kafei{
+	width: 10%;
+    height: 8%;
+    bottom: 21%;
+    left: 71%;
+	
+}
+#bg{
+	background: #fdf5ea !important;
+	/*animation: scale1 4s linear infinite;*/
+}
+.page9-bg{
+	width: 149%;
+    height: 75%;
+    bottom: 0%;
+    left: -23%;
+}
+.page9-ball{
+	left: 14%;
+    height: 5%;
+    bottom: 18%;
+    animation: updown 1s infinite;
+    
+}
+.page9-fengzheng{
+	   width: 100%;
+    left: -4%;
+    top: 1%;
+    animation: fengzhegn 2s linear infinite;
+	
+}
+.page9-qiqiu{
+	    left: 25%;
+    /*height: 30%;*/
+    top: 31%;
+    width: 0%;
+    animation: qiqiu 2s linear infinite;
+    
+}
+.page8-feiji9text{
+	    left: 35%;
+    top: 62%;
+}
+.page8-feiji9text2{
+	left: 32%;
+    top: 71%;
+}
+@keyframes qiqiu{
+	0%{transform: rotate(0deg);}
+	30%{transform: rotate(10deg);}
+	60%{transform: rotate(0deg);}
+	90%{transform: rotate(-10deg);}
+	100%{transform: rotate(0deg);}
+}
+@keyframes updown{
+	0%{transform: translateY(0px);}
+	30%{transform: translateY(200px);}
+	60%{transform: translateY(250px);}
+	90%{transform: translateY(-200px);}
+	100%{transform: translateY(0px);}
+}
+@keyframes fengzhegn{
+	0%{transform: translate(0px,0px);}
+	50%{transform: translate(20px,20px);}
+	100%{transform: translate(0px,0px);}
+}
+@keyframes yezi{
+	0%{transform: translate(0px,0px);}
+	45%{transform: translate(-10px,10px);}
+	65%{transform: translate(10px,-10px);}
+	100%{transform: translate(0px,0px);}
+}
+	
+}
+@keyframes scale1{
+	0%{transform: scale(0.5);}
+	100%{transform: scale(1);}
+}
+
+.cjj-page10{
+	background: #eee;
+	
+}
+.cjj-page11{
+	background: #eee;
+	
+	
+}
+.cjj-page12{
+	background: #eee;	
+}
+
+/*cjj end*/
+
+
+
+/*dh*/
+.dh-content{
+	position: absolute;
+	height: 100%;
+	width:100%;
+	/*overflow: hidden;*/
+}
+
+.dhpage{
+	position: relative;
+	overflow: hidden;
+}
+/*page1*/
+.dhpage .page1{
+	height: 100%;
+	width:100%;
+	/*background: lightcyan;*/
+	/*display: none;*/
+	
+}
+.dhpage .page1-line{
+	width: 100%;
+	height: 100%;
+}
+
+.dhpage .page1-balloon {
+    width: 18%;
+    right: 27%;
+    top: 12%;
+    animation: rotate 3s linear infinite;
+}
+/*帆船*/
+.dhpage .page1-sailboat {
+    top: 61%;
+    left: -30%;
+    width: 20%;
+    animation: gr 2s ease infinite;
+}
+/*飞机*/
+.dhpage .page1-flight {
+    /*top: 62%;*/
+    bottom: -20%;
+    width: 22%;
+    left: 68%;
+    animation: gr 2s ease infinite;
+}
+.dhpage .page1-childhood {
+    width: 70%;
+   	/*width: 0%;*/
+    top: 31%;
+    left: 15%;
+	display: none;
+}
+.dhpage .page1-云 {
+	width: 100%;
+    top: 24%;
+    animation: zooming 4s infinite;
+}
+
+
+@keyframes zooming{
+	0%{transform: scale(1);}
+	50%{transform: scale(1.1);}
+	100%{transform: scale(1);}
+}
+
+/*//旋转*/
+@keyframes rotate{
+	0%{transform: rotate(0deg);}
+	25%{transform: rotate(15deg);}
+	50%{transform: rotate(0deg);}
+	75%{transform: rotate(-15deg);}
+	100%{transform: rotate(0deg);}
+}
+/*第一页结束*/
+
+/*第二页*/
+.dhpage .page2{
+	background: red;
+
+
+}
+.dhpage .page2-sky {
+    /*width: 88%;*/
+   	width: 0;
+    top: 38%;
+    border-radius: 50%;
+    left: -1%;
+}
+.dhpage .page2-xiaoshihou {
+    width: 42%;
+    top: 8%;
+    left: 2%;
+    display: none;
+    z-index: 10;
+}
+.dhpage .page2-tianlan {
+    width: 54%;
+	top: 82%;
+    left: 40%;
+    display: none;
+    z-index: 10;
+}
+
+.dhpage .page2-border {
+    width: 118%;
+    top: 31%;
+    height: 49%;
+    left: -17%;
+    display: none;
+}
+
+.dhpage .page2-bird {
+    width: 43%;
+    right: 17%;
+    top: 18%;
+}
+
+.dhpage .page2-leaf1 {
+    width: 37%;
+    left: 68%;
+    top: -1%;
+    animation: rotate 4s linear infinite;
+}
+.dhpage .page2-leaf2 {
+    width: 37%;
+    left: -1%;
+    top: 81%;
+    animation: rotate 4s linear infinite;
+}
+.dhpage .page2-yun1 {
+    width: 28%;
+    top: 15%;
+    z-index: -1;
+    animation: move1 6s linear infinite;
+}
+@keyframes move1{
+	0% {left:0px;}
+	50% {left:1000px;}
+	100%{left:0px;}
+}
+.dhpage .page2-yun2 {
+    width: 20%;
+    top: 6%;
+    left: 58%;
+    z-index: -1;
+    animation: move2 4s linear infinite;
+}
+@keyframes move2{
+	0% {left:58%;}
+	50% {left:88%;}
+	100%{left:58%;}
+}
+.dhpage .page2-yun3 {
+    width: 20%;
+    left: 28%;
+    top: 27%;
+    z-index: -1;
+    animation: move3 6s linear infinite;
+}
+@keyframes move3{
+	0% {left:18%;}
+	50% {left:78%;}
+	100%{left:18%;}
+}
+.dhpage .page2-yun4 {
+    width: 24%;
+    top: 20%;
+    left: 59%;
+    z-index: -1;
+    animation: move4 10s linear infinite;
+}
+@keyframes move4{
+	0% {left:4%;}
+	50% {left:70%;}
+	100%{left:4%;}
+}
+/*第二页结束*/
+/*dh end*/
+
+
+/*szh*/
+
+
+.szh_sec1{
+	background: black;
+}
+
+.szh_sec2{
+	background: black;
+}
+.szh_sec3{
+	background: black;
+}
+.szh_sec4{
+	background: black;
+}
+.szh_sec5{
+	background: black;
+}
+.szh_sec6{
+	background: lightblue;
+}
+.szh_sec7{
+	background:#FFFFCC;
+}
+.szh_sec8{
+	background: black;
+}
+.szh_sec9{
+	background: black;
+}
+.szh_sec10{
+	background: black;
+}
+.szh_sec11{
+	background: black;
+}
+.szh_sec12{
+	background: black;
+}
+.szh_sec6 img:nth-child(5){
+	width: 70%;
+    left: 40%;
+    top: 20%;
+    display: none;
+    z-index: 1;
+
+}
+.szh_sec6 img:nth-child(6){
+	    width: 100%;
+		display: none;
+}
+.szh_sec6 img:nth-child(7){
+	  width: 40%;
+    bottom: 0%;
+    left: 20%;
+    position: absolute;
+    z-index: 1;
+ 
+}
+.szh_sec6 img:nth-child(8){
+	    width: 100%;
+	    height: 100%;
+		display: none;
+}
+.szh_img5{
+	    width: 100%;
+    bottom: -100%;
+    left: 5%;
+    position: absolute;
+}
+.big{
+	animation: szh_zooming 4s infinite;
+}
+@keyframes szh_zooming{
+	0%{transform: scale(1);}
+	50%{transform: scale(1.2);}
+	100%{transform: scale(1);}
+}
+@keyframes move{
+	from{
+		bottom: -100%;
+	}
+	to{
+		bottom: 40%;
+	}
+}
+@keyframes szh_rotate{
+	from{transform:rotate(0deg)}
+	to{transform: rotate(360deg)}
+}
+img{
+	position: absolute;
+}
+.szh_sec{
+	position: relative;
+	    transition: all 4s;
+
+}
+#szh_text1 {
+    position: absolute;
+    display: none;
+    top: 5%;
+    left: -3%;
+    width: 65%;
+}
+#szh_text2 {
+    position: absolute;
+    display: none;
+    top: 12%;
+    left: -5%;
+    width: 110%;
+}
+#szh_text3 {
+    position: absolute;
+    display: none;
+    top: 20%;
+    left: 8%;
+      width: 35%;
+
+}
+#szh_text4 {
+    left: 7%;
+    position: absolute;
+    display: none;
+    top: 28%;
+    width: 35%;
+}
+#szh_img6{
+	position: absolute;
+	left: -200%;
+	right: 0;
+	margin:auto ;
+	bottom: 0;
+	width: 100%;
+}
+#szh_img7{
+	position: absolute;
+	left: -200%;
+	right: 0;
+	margin:auto ;
+	bottom: 0;
+	width: 100%;
+
+}
+#szh_img8{
+	position: absolute;
+	left: -200%;
+	right: 0;
+	margin:auto ;
+	bottom: 0;
+	width: 100%;
+
+}
+#szh_img9{
+	position: absolute;
+	left: -200%;
+	right: 0;
+	margin:auto ;
+	bottom: 0;
+	width: 100%;
+}
+#szh_img10{
+	position: absolute;
+	left: -200%;
+	right: 0;
+	margin:auto ;
+	bottom: 0;
+	width: 100%;
+}
+#szh_img12{
+    position: absolute;
+    left: 60%;
+    top: 8%;
+    width: 30%;
+	animation:szh_rotate 4s linear infinite  ;
+}
+#szh_txt5 {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 90%;
+    display: none;
+}
+#szh_txt6 {
+    position: absolute;
+    top: 10%;
+    width: 30%;
+    left: 6%;
+	display: none;
+}
+#szh_txt7 {
+    position: absolute;
+    top: 20%;
+    width: 42%;
+    left: 5%;
+    display: none;
+}
+/*szh end*/
+
+
+/*yhq*/
+.content
+{
+	position: absolute;
+	background: #EEE9BF;
+}
+.yhq
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.yhq1
+{
+
+}
+/*.yhq1-bg
+{
+	    width: 115%;
+    height: 56%;
+    left: -18%;
+}*/
+.yhq1-bg2
+{
+	height: 100%;
+    /*right: -38%;*/
+}
+.yhq1-txt
+{
+	opacity: 1;
+    width: 40%;
+    bottom: 81%;
+}
+.yhq1-girl
+{
+	/*right: 27%;*/
+    bottom: -10%;
+    width: 50%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+.yhq1-di
+{      display: block;
+    width: 100%;
+    height: 5%;
+    bottom: 0;
+    position: absolute;
+}
+.yhq1-txt2
+{
+	opacity: 1;
+    bottom: 50%;
+  /*  width:100%;*/
+	display: none;
+}
+
+/*第二页*/
+.yhq2
+{
+	background: #eee9bf;
+}
+.yhq2-boy
+{
+	width: 66%;
+    bottom: 0;
+}
+.yhq2-txt
+{
+	width: 75%;
+    right: 25%;
+    bottom: 89%;
+}
+.yhq2-dream
+{
+	right: 6%;
+    top: 36%;
+    width: 22%;
+    height: 0%;
+   
+}
+.yhq2-dream2
+{
+    right: 9%;
+    top: 11%;
+    width: 45%;
+   animation: none;
+   display: none;
+}
+.yhq2-dream3
+{
+    right: 50%;
+    top: 45%;
+    width: 45%;
+    display: none;
+}
+.yhq2-dream4
+{
+	right: 0%;
+    top: 16%;
+    width: 0%;
+   
+}
+/*//第二幕*/
+.yhq2-dream5{
+	 width: 63%;
+    top: 11%;
+    left: 21%;
+    display: none;
+}
+.yhq2-txt2
+{
+	width: 100%;
+    left: 0;
+    bottom: 89%;
+	display: none;
+}
+.yhq2-txt3
+{
+	    bottom: 24%;
+	    left: 67%;
+	    display: none;
+}
+.yhq2-2wen
+{
+	height: 50%;
+    left: -15%;
+    top: 21%;
+    animation:none;
+    display: none;
+    
+}
+
+@keyframes ride{
+	from{transform: scale(0);}
+	to{transform: scale(1);}
+}
+@keyframes sho{
+	0%{transform: scale(0);}
+	66%{transform: scale(1.3);}
+	100%{transform: scale(1);}
+	
+}
+.wenhao1
+{
+	width: 22%;
+    bottom: 21%;
+    right: 15%;
+}
+.wenhao2
+{
+	width: 22%;
+    bottom: 29.5%;
+    right: 7.5%;
+    display: none;
+}
+.wenhao3
+{
+	width: 22%;
+    bottom: 40%;
+    right: 0%;
+    display: none;
+}
+/*yhq end*/
+
+
+/*jhq*/
+
+.page{
+	position: relative;
+	overflow: hidden;
+}
+
+/*第十一页*/
+.jhq_11{
+	background: skyblue;
+	width: 100%;
+	height: 100%;
+}
+
+.jhq_11_build{
+	width: 100%;
+	height: 45%;
+	bottom: 0;
+}
+.jhq_11_astronaut{
+	width: 20%;
+    height: 10%;
+    left: 2%;
+    bottom: 45%;
+}
+.jhq_11_aid{
+	top: 30%;
+    left: 13%;
+    width: 14%;
+    height: 8%;
+}
+.jhq_11_kid{
+	width: 25%;
+    height: 13%;
+    left: 37%;
+    bottom: 45%;
+}
+.jhq_11_ballon{
+	width: 33%;
+    height: 17%;
+    left: 30%;
+    bottom: 35%;
+}
+.jhq_11_machine{
+	bottom: 50%;
+    left: 70%;
+    height: 8%;
+}
+
+.jhq_11_map{
+	height: 11%;
+    left: 22%;
+    top: 8%;
+    width: 24%;
+}
+.jhq_11_pen {
+	right: 10%;
+    top: 13%;
+    width: 17%;
+    height: 12%;
+}
+.jhq_11_math{
+	right: 35%;
+    top: 30%;
+    width: 15%;
+}
+
+.jhq_11_txt{
+	width: 100%;
+    height: 5%;
+    top: 24%;
+    display: none;
+}
+
+.anim_zoom{
+	animation: zooming1 4s infinite;
+}
+.anim_zoom1{
+	animation: zooming2 2s infinite;
+}
+.anim_rotate{
+	animation: rotate1 4s infinite;
+}
+.anim_rotate1{
+	animation: rotate2 2s infinite;
+}
+@keyframes zooming1{
+	0%{transform: scale(0.9);}
+	50%{transform: scale(1.2);}
+	100%{transform: scale(0.9);}
+}
+
+@keyframes zooming2{
+	0%{transform: scale(1.1);}
+	50%{transform: scale(0.9);}
+	100%{transform: scale(1.1);}
+}
+
+@keyframes rotate1{
+	0%{transform: rotate(0deg);}
+	100%{transform: rotate(360deg);}
+}
+@keyframes rotate2{
+	0%{transform: rotate(0deg);}
+	25%{transform: rotate(-30deg);}
+	50%{transform: rotate(0deg);}
+	75%{transform: rotate(30deg);}
+	100%{transform: rotate(0deg);}
+}
+.jhq_12{
+	background: white;
+}
+.jhq_12_bg{
+	width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.jhq_12_clouds1{
+	width: 17%;
+    top: 10%;
+    left: 2%;
+}
+
+.jhq_12_clouds2{
+	top: 6%;
+    left: 10%;
+}
+.jhq_12_clip1{
+	top: 2%;
+}
+
+.jhq_12_photo1{
+	top: 24%;
+    left: 11%;
+    width: 40%;
+}
+
+.jhq_12_photo3{
+	top: 18%;
+    left: 54%;
+    width: 38%;
+}
+.jhq_12_photo4{
+	bottom: 18%;
+    height: 20%;
+    width: 23%;
+    left: 4%;
+}
+.jhq_12_photo5{
+	bottom: 17%;
+    left: 32%;
+}
+.jhq_12_photo6{
+	bottom: 18%;
+    width: 26%;
+    right: 0%;
+}
+.jhq_12_clip2{
+	top: 53%;
+}
+.jhq_12_ballon{
+	right: 9%;
+    width: 10%;
+    top: 1%;
+}
+.jhq_12_star{
+	width: 100%;
+    height: 100%;
+}
+.jhq_12_leaf{
+	left: 2%;
+    bottom: 2%;
+    width: 0%;
+    animation: zooming1 4s infinite;
+}
+.jhq_12_plane{
+	width: 60%;
+    top: 10%;
+}
+.jhq_12_txt{
+	height: 6%;
+    top: 48%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.ph_rotate{
+	animation: rotate3 4s infinite;
+}
+@keyframes rotate3{
+	0%{transform: rotate(0deg);}
+	25%{transform: rotate(10deg);}
+	50%{transform: rotate(0deg);}
+	75%{transform: rotate(-10deg);}
+	100%{transform: rotate(0deg);}
+}
+.jhq_1{
+	background: #111111;
+}
+.jhq_2{
+	background: pink;
+}
+.jhq_3{
+	background: #111111;
+}
+.jhq_4{
+	background: pink;
+}
+.jhq_5{
+	background: #111111;
+}
+.jhq_6{
+	background: pink;
+}
+.jhq_7{
+	background: #111111;
+}
+.jhq_8{
+	background: pink;
+}
+.jhq_9{
+	background: #111111;
+}
+.jhq_10{
+	background: pink;
+}
+
+
+
+
+/*jhq end*/

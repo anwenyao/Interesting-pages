@@ -4,26 +4,159 @@
 	<meta charset="UTF-8">
 	<title>个人颜色拾取</title>
 	<style type="text/css">
-	div{
-		height:80px;
-		width: 80px;
-		line-height: 80px;
-		float: left;
-		margin: 10px;
-		cursor: pointer;
+		*{
+			margin: 0;
+			padding: 0;
 		}
-	#inputText{
-		opacity: 0;
-	}
-		</style>
+		div{
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: 4px;
+		}
+		.color,#add{
+			height:80px;
+			width: 80px;
+			line-height: 73px;
+			cursor: pointer;
+			margin: 15px;
+			}
+		.color,#add{
+			/*margin: 10px;*/
+			
+		}
+		#inputText{
+			opacity: 0;
+		}
+		#add{
+			border:1px dashed #409eff;
+			color: #409eff;
+			text-align: center;
+			font-size: 3em;
+			font-weight: lighter;
+		}
+		#mask{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(0,0,0,.7);
+			text-align: center;
+			display: none;
+		}
+		#addBox{
+			height: 150px;
+			width:350px;
+			background: #fff;
+			padding: 10px;
+			margin-top: 150px;
+		}
+		.input,.btn{
+			border: 1px solid #409eff;
+			border-radius: 3px;
+			height: 30px;
+			margin: 10px 10px;
+			outline: none;
+			
+			
+			/*vertical-align: middle;*/
+		}
+		.newLine{
+			text-align: left;
+			width: 180px;
+			position: relative;
+		}
+		.newLine > span{
+			/*font-size: 15px;*/
+			color:#666;
+			font-size: .9em;
+			/*margin-bottom: 10px;*/
+		}
+		.newLine .check{
+			height: 13px;
+			width: 13px;
+			color: #fff;
+			line-height: 13px;
+			font-size: .75em;
+			border:1px solid #409eff;
+			margin-right: 5px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.input{
+			border:1px solid #ccc;
+			width: 180px;
+			margin-top: 20px;
+			padding-left: 5px;
+			color: #666;
+			font-size: .8em;
+
+		}
+		.btn{
+			background: #409eff;
+			color: #fff;
+			cursor: pointer;
+			width: 80px;
+			
+			
+		}
+
+		.btn.cancel{
+			background:#fff;
+			color: #409eff;
+		}
+		.warning{
+			display: inline-block;
+			line-height: 5px;
+			vertical-align: top;
+			text-align:left;
+			font-size: .8em;
+			color: #F56C6C;
+			width: 180px;
+			display: none;
+		}
+		.warning .failed{
+			text-align: center;
+			font-style: normal;
+			display: inline-block;
+			/*vertical-align: middle;*/
+			width: 15px;
+			height: 15px;
+			line-height: 15px;
+			font-size: 12px;
+			font-weight: bold;
+			background: #F56C6C;
+			color: #fff;
+			border-radius: 50%;
+			margin-right: 5px;
+		}
+	</style>
 </head>
 <body>
-	<div style="background:#ccc;" class = "color">#ccc</div>
-	<div style="background:#eee;" class = "color">#eee</div>
+	<!-- <div style="background:#ccc;" class = "color">#ccc</div>
+	<div style="background:#eee;" class = "color">#eee</div><br>
 	<div style="background:#2e6da4;" class = "color">#2e6da4</div>
 	<div style="background:#337ab7;" class = "color">#337ab7</div>
 	<div style="background:#666;" class = "color">#666</div>
-	<div style="background:#4285f4;" class = "color">#4285f4</div>
+	<div style="background:#4285f4;" class = "color">#4285f4</div> -->
+	<div id="add">+</div>
+	<div id="mask">
+		<div id="addBox">
+				<input type="text" class="input" name="" placeholder="请输入颜色代码">
+				<!-- <br> -->
+				<span class="warning"><i class="failed">!</i>格式错误</span>
+				
+				<div class="newLine">
+					<div class="check">✔</div><span>添加到新的一行</span>
+				</div>
+				
+				<br>
+				<input type="button" class="btn" id="addColor" name="" value="确认">
+				<input type="button" class="btn cancel" name="" value="取消">
+			
+		</div>
+	</div>
 	
 
 	<input type="text" id="inputText" value="color"/>
@@ -32,20 +165,103 @@
 
 
 	<script type="text/javascript">
-		var colors = document.getElementsByClassName("color");
-		var inputText = document.getElementById('inputText');
+		window.onload = function(){
+			var colors = document.getElementsByClassName("color");
+			var inputText = document.getElementById('inputText');
+			var addColor = document.getElementById('addColor');
+			var mask = document.getElementById('mask');
+			var addBtn = document.getElementById('add');
+			var check = document.getElementsByClassName("check")[0];
+			var cancel = document.getElementsByClassName("cancel")[0];
+			var text = document.getElementsByClassName("input")[0];
+			var warning = document.getElementsByClassName("warning")[0];
+			var ifNewline = false;
+			// if(!localStorage.colors){
+				localStorage.colors = {color1:"#eee",color2:"#ccc"};
+			// }
+			// loadColors(localStorage.colors);
+			//test
+			// loadColors(["#00ff00"]);
+
+			check.onclick = function(){
+				ifNewline = !ifNewline;
+				if(ifNewline){
+					this.style.color = "#409eff";
+					return;
+				}
+				this.style.color = "#fff";
+			};
+
+			addBtn.onclick = function(){
+				mask.style.display = "block";
+			};
+
+			addColor.onclick = function(){
+				var value = text.value.trim();
+				console.log(value);
+				if(/^#[\w\d]{3}$/.test(value) || /^#[\w\d]{6}$/.test(value)){
+					var colors = [];
+					if(ifNewline){
+						colors.push("br");
+						// localStorage.colors.push("br");
+					}
+					colors.push(value);
+					// localStorage.colors.push(value);
+					
+					loadColors(colors);
+					// loadColors([this.value,br]);
+					return;
+				}else{
+					warning.style.display = "inline-block";
+					text.focus();
+					text.style.border = "1px solid #F56C6C";
+				}
+			};
+
+			cancel.onclick = function(){
+				mask.style.display = "none";
+			};
+
+			text.onfocus = function(){
+				this.style.border = "1px solid #409eff";
+			};
+			text.onblur = function(){
+				this.style.border = "1px solid #ccc";
+				warning.style.display = "none";
+			};
+
 
 			for(var i = 0;i < colors.length;++i){
-			colors[i].onclick = function(){
-				inputText.value = this.innerHTML;
-		        var currentFocus = document.activeElement;
-		        inputText.focus();
-		        inputText.setSelectionRange(0, inputText.value.length);
-		        var msg = document.execCommand('copy', true)? 'Copied Successfully':'Copy failed';
-		        currentFocus.focus();  
-		        alert(msg);//觉得没必要可以注释
+				colors[i].onclick = function(){
+					inputText.value = this.innerHTML;
+			        var currentFocus = document.activeElement;
+			        inputText.focus();
+			        inputText.setSelectionRange(0, inputText.value.length);
+			        var msg = document.execCommand('copy', true)? 'Copied Successfully':'Copy failed';
+			        currentFocus.focus();  
+			        alert(msg);//觉得没必要可以注释
+				}	
 			}	
-		}	
+
+			function loadColors(colors){
+				var fragment = document.createDocumentFragment();
+				for(var item of colors){
+					var node = null;
+					if(item == "br"){
+						node = document.createElement("br");
+					}else{
+						node = document.createElement("div");
+						node.className = "color";
+						node.style.background = item;
+						node.innerHTML = item;
+					}
+					fragment.appendChild(node);
+				}
+				addBtn.parentNode.insertBefore(fragment,addBtn);
+
+			}
+		};
+		
 
 	</script>
 </body>
